@@ -1034,6 +1034,86 @@
             }
         }
 
+        /* --- ONGOING PROJECTS STYLES --- */
+
+/* The "Breathing" Border Animation */
+@keyframes breath {
+    0% { border-color: rgba(0, 245, 212, 0.3); box-shadow: 0 0 0 rgba(0, 245, 212, 0); }
+    50% { border-color: rgba(0, 245, 212, 0.8); box-shadow: 0 0 15px rgba(0, 245, 212, 0.2); }
+    100% { border-color: rgba(0, 245, 212, 0.3); box-shadow: 0 0 0 rgba(0, 245, 212, 0); }
+}
+
+.ongoing-card {
+    border: 1px solid rgba(0, 245, 212, 0.3);
+    /* Apply the breathing animation */
+    animation: breath 3s infinite ease-in-out; 
+}
+
+/* Status Badge with Blinking Cursor */
+.wip-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(254, 228, 64, 0.1);
+    color: var(--accent);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: 'Space Mono', monospace;
+    border: 1px solid rgba(254, 228, 64, 0.3);
+    margin-bottom: 1rem;
+}
+
+.blink-cursor {
+    display: inline-block;
+    width: 6px;
+    height: 12px;
+    background: var(--accent);
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Animated Striped Progress Bar */
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin-top: 1.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    background-size: 20px 20px;
+    background-image: linear-gradient(
+        45deg, 
+        rgba(255, 255, 255, 0.15) 25%, 
+        transparent 25%, 
+        transparent 50%, 
+        rgba(255, 255, 255, 0.15) 50%, 
+        rgba(255, 255, 255, 0.15) 75%, 
+        transparent 75%, 
+        transparent
+    );
+    animation: move-stripes 1s linear infinite;
+}
+
+@keyframes move-stripes {
+    0% { background-position: 0 0; }
+    100% { background-position: 20px 0; }
+}
+
+/* Color variants for progress bars */
+.bar-primary { background-color: var(--primary); width: 75%; }
+.bar-secondary { background-color: var(--secondary); width: 40%; }
+.bar-accent { background-color: var(--accent); width: 90%; }
+
     </style>
 </head>
 <body>
@@ -1310,7 +1390,7 @@
                                 </svg>
                                 GitHub
                             </a>
-                            <a href="https://drive.google.com/file/d/1oBLB7nxhV7FW_OZ5UFaVueCLOGWhOInr/view?usp=sharing" class="project-btn project-btn-demo" target="_blank">
+                            <a href="https://drive.google.com/drive/u/1/folders/18p21sWctSugIHrkGs8upBlVlCxJUT_yx" class="project-btn project-btn-demo" target="_blank">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <polygon points="5 3 19 12 5 21 5 3"/>
                                 </svg>
@@ -1365,6 +1445,87 @@
         </div>
     </section>
 
+    <section id="ongoing" class="section">
+    <div class="container">
+        <h2 class="section-title scroll-fade">
+            Current <span class="gradient-text">Builds</span>
+        </h2>
+        
+        <div class="projects-grid">
+            
+            <div class="project-card glass-card ongoing-card scroll-fade">
+                <div class="project-content">
+                    <div>
+                        <div class="project-header">
+                            <div class="wip-badge">
+                                <span>Status: Compiling</span>
+                                <span class="blink-cursor"></span>
+                            </div>
+                        </div>
+                        <h3 style="font-family: 'Syne', sans-serif; font-size: 1.3rem; color: var(--light); margin-bottom: 0.5rem;">
+                            Real-time Data Pipeline
+                        </h3>
+                        <p class="project-description" style="font-size: 0.9rem;">
+                            Build an end-to-end streaming pipeline using Kafka/Kinesis to ingest, process, and store data.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--primary); margin-bottom: 5px;">
+                            <span>Progress</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar bar-primary"></div>
+                        </div>
+                    </div>
+
+                    <div class="project-tech">
+                        <span class="tag">Kafka</span>
+                        <span class="tag">PostgreSQL </span>
+                        <span class="tag">Docker</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card glass-card ongoing-card scroll-fade">
+                <div class="project-content">
+                    <div>
+                        <div class="project-header">
+                            <div class="wip-badge">
+                                <span>Status: Training Model</span>
+                                <span class="blink-cursor"></span>
+                            </div>
+                        </div>
+                        <h3 style="font-family: 'Syne', sans-serif; font-size: 1.3rem; color: var(--light); margin-bottom: 0.5rem;">
+                            Orbit Cortex
+                        </h3>
+                        <p class="project-description" style="font-size: 0.9rem;">
+                            AI-integrated operating systems (AI OS) represent a shift from traditional, rule-based OS architectures to intelligent systems that leverage Large Language Models (LLMs) and machine learning to manage hardware, optimize resources, and personalize user experiences
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--secondary); margin-bottom: 5px;">
+                            <span>Progress</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar bar-secondary"></div>
+                        </div>
+                    </div>
+
+                    <div class="project-tech">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Natural Language Processing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     <section id="contact" class="section">
         <div class="container">
             <h2 class="section-title scroll-fade">
@@ -1380,56 +1541,57 @@
                         If you're looking for someone passionate about data, let's talk!
                     </p>
                     <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <polyline points="22,6 12,13 2,6"/>
-                                </svg>
-                            </div>
-                            <div class="contact-text-group">
-                                <p style="color: rgba(248, 249, 250, 0.6); font-size: 0.85rem;">Email</p>
-                                <p style="color: var(--primary);">basurulokuge@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                                </svg>
-                            </div>
-                            <div class="contact-text-group">
-                                <p style="color: rgba(248, 249, 250, 0.6); font-size: 0.85rem;">Phone</p>
-                                <p style="color: var(--primary);">+94 72 636 8542</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
-                                </svg>
-                            </div>
-                            <div class="contact-text-group">
-                                <p style="color: rgba(248, 249, 250, 0.6); font-size: 0.85rem;">Location</p>
-                                <p style="color: var(--primary);">Sri Lanka</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                                </svg>
-                            </div>
-                            <div class="contact-text-group">
-                                <p style="color: rgba(248, 249, 250, 0.6); font-size: 0.85rem;">Education</p>
-                                <p style="color: var(--primary);">University of Sri Jayewardenepura</p>
-                            </div>
-                        </div>
-                    </div>
+    <div class="contact-item">
+        <div class="contact-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+            </svg>
+        </div>
+        <div class="contact-text-group">
+            <p style="color: rgba(248, 249, 250, 0.6); font-size: 0.85rem;">Email</p>
+            <p style="color: var(--primary);">basurulokuge@gmail.com</p>
+        </div>
+    </div>
 
-    
+    <div class="contact-item">
+        <div class="contact-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+        </div>
+        <div class="contact-text-group">
+            <p style="color: rgba(248, 249, 250, 0.6); font-size: 0.85rem;">Phone</p>
+            <p style="color: var(--primary);">+94 72 636 8542</p>
+        </div>
+    </div>
+
+    <div class="contact-item">
+        <div class="contact-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+            </svg>
+        </div>
+        <div class="contact-text-group">
+            <p style="color: rgba(248, 249, 250, 0.6); font-size: 0.85rem;">Location</p>
+            <p style="color: var(--primary);">Sri Lanka</p>
+        </div>
+    </div>
+
+    <div class="contact-item">
+        <div class="contact-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+        </div>
+        <div class="contact-text-group">
+            <p style="color: rgba(248, 249, 250, 0.6); font-size: 0.85rem;">Education</p>
+            <p style="color: var(--primary);">University of Sri Jayewardenepura</p>
+        </div>
+    </div>
+</div>
                     <div class="social-links">
                         <a href="https://github.com/BasuruLokuge" target="_blank" class="social-btn" title="GitHub">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
